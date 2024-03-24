@@ -1,7 +1,6 @@
-![MasterHead](https://camo.githubusercontent.com/7de37139d0b4c1ce40865e799b446c0e963a3dd8fb68d239707237c40604fa3d/68747470733a2f2f63646e2e6472696262626c652e636f6d2f75736572732f3733303730332f73637265656e73686f74732f363538313234332f6176656e746f2e676966)
 <h1 align="center">Hi 👋, I'm Shubham Sakhare</h1>
 <h3 align="center">A passionate full stack developer from India</h3>
-
+<img src="https://media.licdn.com/dms/image/D4D12AQE-5Q-evNzR2Q/article-cover_image-shrink_720_1280/0/1688467501707?e=1717027200&v=beta&t=-ZFqm-MHT1rIP8Af3T5kytFCv_IJ42mByifsxkuR5-w" alt="MasterHead" width="445" height="350" align="right">
 - 🔭 I’m currently working on [3DExperience Platform](https://www.3ds.com/3dexperience)
 
 - 🌱 I’m currently learning **grafana, PyTorch**
