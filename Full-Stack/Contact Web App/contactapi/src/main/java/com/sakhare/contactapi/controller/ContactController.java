@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static Constant.Constant.IMG_DIRECTORY;
+import static org.springframework.http.MediaType.*;
 
 @RestController
 @RequestMapping("/contacts")
@@ -23,7 +24,7 @@ public class ContactController {
 
     @PostMapping
     public ResponseEntity<Contact> createContact(@RequestBody Contact contact){
-        return ResponseEntity.created(URI.create("/contacts/userID")).body(contactService.createContact((contact)));
+        return ResponseEntity.created(URI.create("/contacts/userID")).body(contactService.createContact(contact));
     }
 
     @GetMapping
@@ -32,17 +33,24 @@ public class ContactController {
         return ResponseEntity.ok().body(contactService.getAllContacts(page, size));
     }
 
-    @GetMapping("/id")
-    public ResponseEntity<Contact> getContacts(@PathVariable(value = "id") String id){
+    @GetMapping("/{id}")
+    public ResponseEntity<Contact> getContact(@PathVariable(value = "id") String id){
         return ResponseEntity.ok().body(contactService.getContact(id));
     }
 
-    @PutMapping("/image")
-    public ResponseEntity<String> uploadImage(@RequestParam("id") String id, @RequestParam("file")MultipartFile file){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteContact(@PathVariable(value = "id") String id){
+        Contact contact = contactService.getContact(id);
+        contactService.deleteContact(contact);
+        return ResponseEntity.ok("Contact id " + id + " deleted successfully");
+    }
+
+    @PutMapping("/image/{id}")
+    public ResponseEntity<String> uploadImage(@PathVariable(value = "id") String id, @RequestParam("file")MultipartFile file){
         return ResponseEntity.ok().body(contactService.uploadImg(id, file));
     }
 
-    @GetMapping(path = "/image/{filename}")
+    @GetMapping(path = "/image/{filename}", produces = {IMAGE_PNG_VALUE, IMAGE_JPEG_VALUE, IMAGE_GIF_VALUE})
     public byte[] getImg(@PathVariable("filename") String filename) throws IOException {
         return Files.readAllBytes(Paths.get(IMG_DIRECTORY + filename));
     }
